@@ -95,7 +95,10 @@ namespace Azure.DataApiBuilder.Service
             {
                 // Add ApplicationTelemetry service and register
                 // custom ITelemetryInitializer implementation with the dependency injection
-                services.AddApplicationInsightsTelemetry();
+                services.AddApplicationInsightsTelemetry(options =>
+                    {
+                        options.EnableAdaptiveSampling = false;
+                    });
                 services.AddSingleton<ITelemetryInitializer, AppInsightsTelemetryInitializer>();
             }
 
